@@ -1,1 +1,1 @@
-# reveals_slides
+# reveal.js_slides
