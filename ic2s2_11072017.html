@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Named entities and deception detection, IC2S2, Cologne, July 2017</title>
+
+    <meta name="description" content="IC2S2, July 2017">
+    <meta name="author" content="Bennett Kleinberg">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="revealjs/css/reveal.css">
+    <link rel="stylesheet" href="revealjs/css/theme/black.css" id="theme">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="revealjs/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'revealjs/css/print/pdf.css' : 'revealjs/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+
+    </script>
+
+
+    <!-- <script src="revealjs/lib/js/html5shiv.js"></script> -->
+</head>
+
+<body>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section>
+                <h3>Using named entities for computer-automated verbal deception detection</h3>
+                </br>
+                <p>Bennett Kleinberg</p>
+                <p>University of Amsterdam</p>
+            </section>
+
+            <section>
+                <h2>Verbal deception detection</h2>
+            </section>
+
+            <section>
+                <section>
+                    <h3>3 core findings</h3>
+                    <ul>
+                        <li>Richness of detail (Reality Monitoring)</li>
+                        <li>Contextual embeddings (Criteria-based Content Analysis)</li>
+                        <li>Potentially verifiable information (Verifiability Approach)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Promising but ...</h2>
+                    <ul>
+                        <li>relies on human annotation</li>
+                        <li>limited reliability</li>
+                        <li>= not applicable at scale</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Aim</h2>
+                    <p>Reconcile theory with computational methods</p>
+                    <!--                    <p> How can we model the theory computationally?</p>-->
+                </section>
+
+                <section>
+                    <h3>Commonality:</h3>
+                    <p>References to <u>specific information</u> (e.g., persons, locations, dates, times)</p>
+                    <p><i>"I met someone on the street and we had a coffee."</i></p>
+                    <p><i>"I met James yesterday at 11:30 am on 5th Avenue when we went to Starbucks and paid $3.50 for a coffee"</i></p>
+                </section>
+            </section>
+
+
+            <section data-markdown>
+                <section data-markdown>
+                    <textarea data-template>
+                ### Named entity recognition
+                Identification + classification of information from text
+                        
+                I met *James **[PERSON]** * *yesterday **[DATE]** * at *11:30 am **[TIME]** * on *5th Avenue **[LOCATION]** * when we went to *Starbucks **[ORG]** * and paid *$3.50 **[MONEY]** * for a coffee.
+                    </textarea>
+                </section>
+            </section>
+
+            <section>
+                <section data-markdown>
+                    <textarea data-template>
+                ### Data
+                - Ott et al. (2011, 2013) [hotel review dataset](http://myleott.com/op_spam/)
+                - 800 truthful hotel reviews (e.g., hotels.com) 
+                - 800 deceptive hotel reviews (MTurk)
+                </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                ### Method
+                1. Extract named entities for each review (tool: *[spaCy](https://spacy.io)*)
+                        - Persons ("Peter", "Janice")
+                        - Dates ("recent week")
+                        - Times ("7:30 in the morning")
+                        - Locations ("Michigan")
+                        - Money ("$125/night")
+                2. Comparison 1: *average sentence specificity* (tool: *[speciteller](http://www.cis.upenn.edu/~nlp/software/speciteller.html)*)
+                3. Comparison 2: lexicon-based richness of detail (tool: *[Ling. Inquiry and Word Count, LIWC](http://liwc.wpengine.com/)*)
+                </textarea>
+                </section>
+            </section>
+
+
+            <section>
+                <section>
+                    <img width="80%" height="70%" data-src="./img/lucca_figure1.png">
+                    <small>Figure 1a. Effect sizes of the truthful-deceptive difference</small>
+                </section>
+
+                <section>
+                    <img width="80%" height="70%" data-src="./img/lucca_figure2.png">
+                    <small>Figure 1b. Effect sizes of the truthful-deceptive difference (incl. sparsity correction)</small>
+                </section>
+
+                <section>
+                    <img width="80%" height="70%" data-src="./img/ic2s2_fig2_08072017.png">
+                    <small>Figure 2. T-D differences for specific named entity categories (positive hotel reviews)</small>
+                </section>
+            </section>
+
+
+            <section data-markdown>
+                <textarea data-template>
+                ### Recap
+                - Theory points to "specific information" as cue to truthfulness
+                - Named entities as operationalization?
+                
+                ---------
+                    
+                ### Findings
+                - Named entities outperform average sentence specificity
+                - Named entities outperform lexicon approach (LIWC)
+                - Named entities support theory
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                Main outcome: 
+                
+                *Integration of theory with computational methods*
+                
+                    
+                ---------
+                    
+                ### Open questions
+                - overlap between named entities and n-grams?
+                - communication context?
+                
+                </textarea>
+            </section>
+
+
+            <section>
+                <h3>Thank you</h3>
+                <hr>
+                <small><ul>
+                    <li>Co-authors: Maximilian Mozes (TU Munich), Arnoud Arntz, Bruno Verschuere</li>
+                    <li>Preprint: <a href="https://osf.io/preprints/hk6yf/">https://osf.io/preprints/hk6yf/</a></li>
+                    <li>Code: <a href="https://github.com/ben-aaron188/information_specificity">https://github.com/ben-aaron188/information_specificity</a> </li>
+                    <li>Data: <a href="https://osf.io/2qjs4/">https://osf.io/2qjs4/</a> </li>
+                    <li>Slides: <a href="http://tinyurl.com/ic2s2-kleinberg">http://tinyurl.com/ic2s2-kleinberg</a> </li>
+                    <li>References: <a href="./dir1/refs_ic2s2.html">refs_ic2s2.html</a></li>
+                </ul>
+                    </small>
+                <br><br>
+                <p><a href="http://bkleinberg.net/">http://bkleinberg.net/</a> // b.a.r.kleinberg@uva.nl</p>
+                <p><a href="http://mmozes.net/">http://mmozes.net/</a></p>
+                <hr />
+                <small>made with <a href="https://github.com/hakimel/reveal.j">[reveal.js]</a></small>
+            </section>
+
+        </div>
+
+    </div>
+
+    <script src="revealjs/lib/js/head.min.js"></script>
+    <script src="revealjs/js/reveal.js"></script>
+
+    <script>
+        // More info https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+            markdown: {
+                predantic: true
+            },
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+            // More info https://github.com/hakimel/reveal.js#dependencies
+            dependencies: [{
+                    src: 'revealjs/lib/js/classList.js',
+                    condition: function() {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: 'revealjs/plugin/markdown/marked.js',
+                    condition: function() {
+                        return !!document.querySelector('[data-markdown]');
+                    }
+                },
+                {
+                    src: 'revealjs/plugin/markdown/markdown.js',
+                    condition: function() {
+                        return !!document.querySelector('[data-markdown]');
+                    }
+                },
+                {
+                    src: 'revealjs/plugin/highlight/highlight.js',
+                    async: true,
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: 'revealjs/plugin/zoom-js/zoom.js',
+                    async: true
+                },
+                {
+                    src: 'revealjs/plugin/notes/notes.js',
+                    async: true
+                }
+            ]
+        });
+
+    </script>
+
+</body>
+
+</html>
