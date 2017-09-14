@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Crime Science, IIS UvA, 14 Sept. 2017</title>
+
+  <meta name="description" content="Crime Science, IIS">
+  <meta name="author" content="Bennett Kleinberg">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="revealjs/css/reveal.css">
+  <link rel="stylesheet" href="revealjs/css/theme/white.css" id="theme">
+  <!-- black, white, league, beige, sky, night, serif, simple, solarized -->
+
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="revealjs/lib/css/zenburn.css">
+
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match(/print-pdf/gi) ? 'revealjs/css/print/pdf.css' : 'revealjs/css/print/paper.css';
+    document.getElementsByTagName('head')[0].appendChild(link);
+  </script>
+
+
+  <!-- <script src="revealjs/lib/js/html5shiv.js"></script> -->
+</head>
+
+<body>
+
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+
+      <!-- intro and problem -->
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+## Airport Secuity 2.0
+
+Part1: Approaches to deception detection
+
+Part2: Future developments
+      </textarea>
+        </section>
+        <section>
+          <img width="80%" height="80%" data-src="./img/problem_flow.png">
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+<img width="90%" height="90%" top="20%" data-src="./img/baserate_problem.png">
+      </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+<img width="80%" height="10%" data-src="./img/baserate_problem.png">
+
+| Terrorist | Passenger |
+--- | --- | --- | --- | --- |
+**Terrorist** | <p class="fragment highlight-red">950</p> | 50 | 1,000
+**Passenger** | 4,950 | 94,050 | 99,000
+| <p class="fragment highlight-red">5,900</p> | 94,100 | <p class="fragment highlight-red">100,000</p>
+
+<p class="fragment">Precision: 950/5900 = 16.10%</p>
+      </textarea>
+        </section>
+      </section>
+
+      <!-- current approaches -->
+      <section>
+
+        <section data-markdown>
+          <textarea data-template>
+        ## Deception detection
+
+        </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+## Behavior detection
+
+e.g. SPOT
+
+What are the problems?
+      </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+## Behavior detection
+
+- stress-based assumption
+- problem of "innocent stress"
+      </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+### Related methods
+
+- Polygraph
+- Thermal imaging
+- Voice Stress Analysis
+
+Same assumption, same problems
+      </textarea>
+        </section>
+      </section>
+
+      <!-- verbal/linguistic -->
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+<!-- cogn based -->
+## Cognitive deception detection
+      </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+<!-- verbal -->
+### Verbal deception detection
+
+- verbal content --> deception
+- _what_ someone says/writes
+
+Vrij's studies
+
+<small>Vrij et al., 2015</small>
+<small>but: Levine et al., 2017</small>
+      </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+**Reality Monitoring**
+
+- external vs internal memory sources
+- richness of detail
+- accuracies ca. 70-75%
+
+<small>Masip et al., 2005</small>
+      </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+<!-- verbal VA-->
+### The Verifiability Approach
+
+The liar's dilemma
+
+<p class="fragment"><i>"I met someone on the street and we had a coffee."</i></p>
+<p class="fragment"><i>"I met James yesterday at 11:30 am on 5th Avenue when we went to Starbucks and paid $3.50 for a coffee"</i></p>
+
+<small>Nahari et al., 2014</small>
+
+      </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+        <!-- verbal VA-->
+        <!-- ### The Verifiability Approach -->
+
+<img width="70%" height="70%" data-src="./img/kleinberg_et_al_2016_nahari_graph.png">
+
+<small>Kleinberg et al., 2016</small>
+        </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+        <!-- linguistic -->
+### Stylometric deception detection
+
+- _how_ someone writes
+- authorship attribution & author profiling
+- writing style --> deception
+- involuntary processes
+- word types, frequency of words, etc.
+
+<small>Fornaciari & Poesio, 2013</small>
+        </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+        Examples of cues:
+
+        - punctuation
+        - POS frequencies
+        - mistakes
+        - informal language
+
+        <small>Ott et al., 2011, 2013</small>
+        </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+### Comparison
+
+ | Core | Approach | Cue extraction | Analysis |
+ --- | --- | --- | --- | --- |
+verbal | What? | theory-led | manual | statistical analysis
+stylometric | How? | data-driven | automated | machine learning
+      </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+## Key challenges
+
+- intentions
+- **scalability** (!= manual work)
+      </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            <!-- computerized approaches -->
+            Needed: computerized techniques
+      </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            <!-- computerized approaches -->
+            ### Data-driven approaches
+
+- computerized cue extraction
+- machine learning classification
+
+Pro & Cons?
+      </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ### Hybrid approaches
+ theory + computational
+
+ <!-- Identification + classification of information from text -->
+
+  I met *James **[PERSON]** * *yesterday **[DATE]** * at *11:30 am **[TIME]** * on *5th Avenue **[LOCATION]** * when we went to *Starbucks **[ORG]** * and paid *$3.50 **[MONEY]** * for a coffee.
+
+            <small>Kleinberg et al., 2018</small>
+      </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+
+            <img width="80%" height="70%" data-src="./img/lucca_figure2.png">
+            <small>Effect sizes of the truthful-deceptive difference (incl. sparsity correction)</small>
+            <small>Kleinberg et al., 2018</small>
+      </textarea>
+        </section>
+
+
+      </section>
+
+      <!-- applied approaches -->
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+## Approaches at airports
+
+      </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ### AVATAR
+            Automated Virtual Agent for Truth Assessments in Real Time
+<iframe width="784" height="441" src="https://www.youtube.com/embed/AZwfNxRHj_k?rel=0" frameborder="0" allowfullscreen></iframe>
+      </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+### Controlled Cognitive Engagement
+
+1. Strategic interviewing
+1. Elicit rich verbal accounts
+1. Test for expected knowledge
+1. Restrict verbal maneuvering
+1. Raise cognitive load
+1. Speech content
+
+<small>Ormerod & Dando, 2015</small>
+      </textarea>
+        </section>
+      </section>
+
+      <!-- filter problem -->
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+But remember...
+
+<img width="80%" height="80%" data-src="./img/problem_flow.png">
+
+... to be continued
+      </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+### Some questions...
+      </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            > As (potential) terrorists get smarter and keep developing new ways to strike, would the CCE be able to keep up with that?
+
+        </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            > Mock passengers will get money if they get through the airport security. It won’t be a problem if they get caught. They have nothing to lose. Obviously, this situation differs a lot from the situation of a terrorist. How does this difference affect the research?
+      </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            > Why should solutions based off of 'what works' be too simple to help reach a solution in this matter?
+
+      </textarea>
+        </section>
+      </section>
+
+
+      <section data-markdown>
+        <textarea data-template>
+## 10 min break
+      </textarea>
+      </section>
+
+      <!-- demo -->
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+            How would you do it?
+      </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+# Try it yourself
+
+      </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+## Your task
+
+- quick interview (5 min)
+- friendly conversation
+- make a decision about the passenger
+
+
+      </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+        ## Considerations
+
+        - What information do you need?
+        - - expected knowledge
+        - - verifiable information
+
+
+        </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+[Demo chat](chatv003.herokuapp.com)
+      </textarea>
+        </section>
+      </section>
+
+      <section data-markdown>
+        <textarea data-template>
+### What is actually useful?
+
+**Critical transition**
+
+cue - information - intelligence
+    </textarea>
+      </section>
+    </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+<!-- current -->
+### Airport Security 2.0 project
+Requirements:
+
+1. Validated (malintent)
+1. Non-intrusive
+1. Fast
+1. Scalable
+      </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+<!-- critique? -->
+### Any critique?
+      </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+<!-- next steps -->
+### 3 core elements
+
+1. **Scalable data collection**
+1. Real-time data analysis
+1. **High-stakes settings**
+      </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ### A first experiment
+
+            We know:
+
+            - planning questions promising
+            - unanticipated questions work
+
+            So:
+            - lying about flying
+            - 10 brief questions + answers
+
+[[link to the original task]](http://www.newlylabs.net/wp-content/research/cbdmi/exp1_/desktop/html/main.html)
+
+            <small>Kleinberg et al., 2017</small>
+        </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+<img width="80%" height="80%" data-src="./img/collabra_table.png">
+        </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ### Another attempt
+
+            Maybe?:
+
+            - use longer statements
+            - use autobiographical intentions
+            - "model statement" technique
+            - specificity hypothesis
+
+            [[link to this experiment]](http://www.newlylabs.net/wp-content/research/cbdmi/vddpf/exp2/html/main.html)
+
+            <small>Kleinberg et al., in prep.</small>
+        </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            Results
+
+DV | Truthful | Deceptive | f |
+--- | --- | --- | --- |
+Times | 45.60 (55.57) | 48.95 (55.99) | -0.03 ns
+Dates | 133.89 (93.32) | 139.11 (97.44) | -0.03 ns
+| | |
+Persons | 23.68 (48.18) | 40.23 (54.53) | -0.16
+Locations | 24.55 (57.81) | 42.82 (68.69) | -0.14
+
+        </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ### Predictive modelling findings
+
+- supervised machine learning task
+- 41 psycholinguistic variables
+- linear SVM classifier
+- 74.19% (Exp.1) and 68.42% (Exp.2) accuracy
+
+        </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ### Current attempt
+
+- master's dissertation Isabelle
+- chat interviews on autobiographical activities
+
+<!-- <img width="50%" height="50%" data-src="./img/old_chat_structure.png"> -->
+
+        </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+
+<img width="50%" height="50%" data-src="./img/old_chat_structure.png">
+
+        </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+
+<img width="100%" height="100%" data-src="./img/chat_example.png">
+
+        </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ### High-stakes settings
+
+            ... Upcoming experiment ...
+        </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ### Scalable data collection
+
+            - chatbot interview
+            - diagnostic questions
+            - unpredicability
+        </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ### Scalable data collection
+            <img width="80%" height="80%" data-src="./img/system_flow_outlook.png">
+        </textarea>
+        </section>
+
+      </section>
+
+
+
+      <!-- outro -->
+      <section data-markdown>
+        <textarea data-template>
+          ## Next week...
+
+          Paul Gill (UCL): Terrorism and Crime Science
+
+
+          ----------------------
+
+          These slides: [here](http://newlylabs.net/wp-content/slides/reveal_js_slides/crimescience_sem1_20172018_lecture2.html#/)
+
+          Source code on GitHub: [here](https://github.com/ben-aaron188/reveal_js_slides/blob/master/crimescience_sem1_20172018_lecture2.html)
+
+          References: [here](./dir1/refs_crime_science_2.html)
+
+            </br>
+            <small>made with <a href="https://github.com/hakimel/reveal.j">[reveal.js]</a></small>
+        </textarea>
+
+      </section>
+
+    </div>
+
+  </div>
+
+  <script src="revealjs/lib/js/head.min.js"></script>
+  <script src="revealjs/js/reveal.js"></script>
+
+  <script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+      controls: true,
+      progress: true,
+      history: true,
+      center: true,
+      markdown: {
+        predantic: true
+      },
+      transition: 'convex', // none/fade/slide/convex/concave/zoom
+
+      // More info https://github.com/hakimel/reveal.js#dependencies
+      dependencies: [{
+          src: 'revealjs/lib/js/classList.js',
+          condition: function() {
+            return !document.body.classList;
+          }
+        },
+        {
+          src: 'revealjs/plugin/markdown/marked.js',
+          condition: function() {
+            return !!document.querySelector('[data-markdown]');
+          }
+        },
+        {
+          src: 'revealjs/plugin/markdown/markdown.js',
+          condition: function() {
+            return !!document.querySelector('[data-markdown]');
+          }
+        },
+        {
+          src: 'revealjs/plugin/highlight/highlight.js',
+          async: true,
+          callback: function() {
+            hljs.initHighlightingOnLoad();
+          }
+        },
+        {
+          src: 'revealjs/plugin/zoom-js/zoom.js',
+          async: true
+        },
+        {
+          src: 'revealjs/plugin/notes/notes.js',
+          async: true
+        }
+      ]
+    });
+  </script>
+
+</body>
+
+</html>
