@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>N8 Workshop, Manchester, 25 Sept 2017</title>
+
+  <meta name="description" content="N8 Manchester">
+  <meta name="author" content="Bennett Kleinberg">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="revealjs/css/reveal.css">
+  <link rel="stylesheet" href="revealjs/css/theme/white.css" id="theme">
+  <!-- black, white, league, beige, sky, night, serif, simple, solarized -->
+
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="revealjs/lib/css/zenburn.css">
+
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match(/print-pdf/gi) ? 'revealjs/css/print/pdf.css' : 'revealjs/css/print/paper.css';
+    document.getElementsByTagName('head')[0].appendChild(link);
+  </script>
+
+
+  <!-- <script src="revealjs/lib/js/html5shiv.js"></script> -->
+</head>
+
+<body>
+
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+
+      <!-- intro and problem -->
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+## Terrorism prevention with predictive modeling in R
+</br>
+Bennett Kleinberg
+
+University of Amsterdam
+
+[bkleinberg.net](http://bkleinberg.net/)
+      </textarea>
+        </section>
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+              <img width="80%" height="80%" data-src="./img/problem_flow.png">
+        </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+              ## Our approach
+
+              - Text-based information on intended activities
+              - Estimate the veracity/ambiguity of statements
+              - Use prediction in security process at the airport
+</br>
+</br>
+              **Today**: predictive modeling
+        </textarea>
+        </section>
+
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+                ### Predictive modeling
+
+                Core task:
+
+                Predict a target variable based on observations.
+
+                <small>Synonym: Supervised machine learning</small>
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+### Three scenarios
+
+
+
+1. We have a theory
+2. No theory
+3. Don't care about theory
+
+... but ...
+
+We've got (massive) data with weak relationships.
+
+And we want to predict an outcome variable.
+
+<!-- **Scale** and **accuracy** -->
+
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+                ## Example
+
+                - Written statements about planned activities
+                - 80 truthful, 79 deceptive
+
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+
+| A | B |
+| --- | --- |
+| My friends and I will visit the gym at my workplace on Sunday. We meet every weekend to get some exercise in before our business meeting on Sunday evening. Kyle and Alex will be accompanying me. | My friend Ellen and I are packing for the weekend to board a bus to Philadelphia tomorrow morning, for my niece April's wedding. |
+
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+### Core idea
+
+1. Let an algorithm learn the relationship between your predictors and the outcome.
+</br>
+</br>
+2. Use the algorithm to predict future outcomes.
+
+</br>
+</br>
+
+**EXAMPLE**
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+        <img width="80%" height="80%" data-src="./img/ml_flow_1.png">
+
+
+          </textarea>
+
+
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+<!-- ### Aim: predict outcome for new data -->
+
+<img width="80%" height="80%" data-src="./img/ml_flow_2.png">
+
+### Scale and accuracy
+          </textarea>
+        </section>
+
+
+        <section data-markdown>
+          <textarea data-template>
+        <!-- ### Aim: predict outcome for new data -->
+
+        <img width="80%" height="80%" data-src="./img/ml_flow_3.png">
+
+        <!-- ### Scale and accuracy -->
+          </textarea>
+        </section>
+
+
+        <!-- <section data-markdown>
+          <textarea data-template>
+<img width="80%" height="80%" data-src="./img/flow_supervised_ml.png">
+          </textarea>
+        </section> -->
+
+        <!-- <section data-markdown>
+          <textarea data-template>
+<img width="80%" height="80%" data-src="./img/flow_supervised_ml.png">
+          </textarea>
+        </section> -->
+
+        <section data-markdown>
+          <textarea data-template>
+                ### Teaching the algorithm
+</br>
+
+| Classification | Training data | Testing data | Outcome |
+| --- | --- | --- | --- |
+| Simple | M / N | M / N | M / N |
+| Multi-class | M / N / D | M / N / D | M / N / D |
+| One-class | N | M / N | M / N |
+
+          </textarea>
+        </section>
+
+        <!-- <section data-markdown>
+          <textarea data-template>
+### Teaching the algorithm
+</br>
+
+| Classification | Training data | Testing data | Outcome |
+| --- | --- | --- | --- |
+| Multi-class | T & D & Dipl | T & D & Dipl. | T & D & Dipl. |
+
+          </textarea>
+        </section> -->
+
+        <!-- <section data-markdown>
+          <textarea data-template>
+### What about data requirements?
+
+- relatively large datasets needed
+- balanced classes desirable
+
+And low base rate settings?
+
+          </textarea>
+        </section> -->
+
+        <!-- <section data-markdown>
+          <textarea data-template>
+### Teaching the algorithm
+</br>
+
+| Classification | Training data | Testing data | Outcome |
+| --- | --- | --- | --- |
+| One-class | T | T & D | T & D |
+
+          </textarea>
+        </section> -->
+
+        <section data-markdown>
+          <textarea data-template>
+            ### Outcome flexibility
+
+            - Probabilities behind classification
+            - Risk-based adjustments
+
+            **P(malicious|content of statement)**
+
+<img width="80%" height="80%" data-src="./img/ml_prob_example.png">
+
+Threshold: 0.50
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ### Training the algorithm
+
+            <!-- - you got lucky with the train/test split -->
+            <!-- - not representative of the data -->
+
+            Cross-validation needed:
+
+            <img width="80%" height="80%" data-src="./img/cv_3k.gif">
+
+          </textarea>
+        </section>
+
+        <!-- <section data-markdown>
+          <textarea data-template>
+            | | | Prediction | |
+            | --- | --- | --- | --- |
+            | | | Radical. | Non-rad. |
+            | **Reality** | Radical. |  |  |
+            | | Non-rad. |  |  |
+          </textarea>
+        </section> -->
+
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+                  ### Stepwise example
+
+                  Step 1: split data
+
+<pre><code data-trim data-noescape>
+                        library(caret)
+
+                        training_indices =
+                                  createDataPartition(y = data$true_label, p = .8)
+
+                        training_data = data[training_indices, ]
+
+                        test_data = data[- training_indices, ]
+
+                        	</code></pre>
+            </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ### Stepwise example
+
+            Step 2: set controls
+
+            <pre><code data-trim data-noescape>
+              my_controls =
+                  trainControl(method="repeatedcv"
+                    , number=3
+                    , repeats=10
+                    , classProbs = T
+                    # …
+                    )
+
+                                    	</code></pre>
+
+            </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ### Stepwise example
+
+            Step 3: train classifier
+
+            <pre><code data-trim data-noescape>
+              my_classifier =
+                train(true_label ~ .
+                  , data = training_data
+                  , method = "svmLinear"
+                  , trControl = controls
+                  # …
+                  )
+                                    	</code></pre>
+            </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ### Stepwise example
+
+            Step 4: Test the trained classifier
+
+            <pre><code data-trim data-noescape>
+              predicted_label = predict(my_classifier, test_data)
+
+              caret::confusionMatrix(predicted_label, test_data$true_label)
+
+                                      </code></pre>
+
+| | predicted: malicious | predicted:      normal |
+| --- | --- | --- |
+| **true label: malicious** | 70 (true pos.) | 30 (false neg.) |
+| **true label: normal** | 10 (false pos.) | 90 (true neg.) |
+
+            </textarea>
+        </section>
+
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+                    ### When to use predictive modeling?
+
+                    1. You want to predict some outcome
+                    2. You've got annotated data
+              </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+                    ### What does it offer?
+
+                    - find relationships in data
+                    - optimise predictions
+                    - tell you what's useful and what not
+                    - lets the data speak
+              </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+                    **Explanatory vs. predictive modeling**
+
+              </textarea>
+        </section>
+
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+                      ### Why use R?
+
+                      - _caret_ package!
+                      - _e1071_ package!
+                      - maximum of control for the analyst
+                      - 150+ classifiers
+                      - easy to scale
+                      - sheds light into the "black box"
+                </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+                      ## Why use R?
+
+                      - large community
+                      - reproducibility
+                      - flexibility
+                      - open source!
+                </textarea>
+        </section>
+
+
+        <section data-markdown>
+          <textarea data-template>
+                      ## Crime applications
+
+                      <!-- - terrorism prevention: P(threat|background data) -->
+                      - burglary prediction: P(burglary|history)
+                      - threat assessment: P(actual risk|threat content)
+                </textarea>
+        </section>
+
+        <!-- <section data-markdown>
+          <textarea data-template>
+                      Alternatives to R
+                </textarea>
+        </section> -->
+
+        <!-- <section data-markdown>
+          <textarea data-template>
+                      Pseudo code working example
+                </textarea>
+        </section> -->
+
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+                      END
+
+------------
+
+                      Link: [A visual intro to ML](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)
+
+                      Book: [Applied Predictive Modelling](http://appliedpredictivemodeling.com/)
+
+-----------
+</br>
+<small>made with <a href="https://github.com/hakimel/reveal.j">[reveal.js]</a></small>
+                </textarea>
+        </section>
+
+      </section>
+
+    </div>
+
+  </div>
+
+  <script src="revealjs/lib/js/head.min.js"></script>
+  <script src="revealjs/js/reveal.js"></script>
+
+  <script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+      controls: true,
+      progress: true,
+      history: true,
+      center: true,
+      markdown: {
+        predantic: true
+      },
+      transition: 'convex', // none/fade/slide/convex/concave/zoom
+
+      // More info https://github.com/hakimel/reveal.js#dependencies
+      dependencies: [{
+          src: 'revealjs/lib/js/classList.js',
+          condition: function() {
+            return !document.body.classList;
+          }
+        },
+        {
+          src: 'revealjs/plugin/markdown/marked.js',
+          condition: function() {
+            return !!document.querySelector('[data-markdown]');
+          }
+        },
+        {
+          src: 'revealjs/plugin/markdown/markdown.js',
+          condition: function() {
+            return !!document.querySelector('[data-markdown]');
+          }
+        },
+        {
+          src: 'revealjs/plugin/highlight/highlight.js',
+          async: true,
+          callback: function() {
+            hljs.initHighlightingOnLoad();
+          }
+        },
+        {
+          src: 'revealjs/plugin/zoom-js/zoom.js',
+          async: true
+        },
+        {
+          src: 'revealjs/plugin/notes/notes.js',
+          async: true
+        }
+      ]
+    });
+  </script>
+
+</body>
+
+</html>
